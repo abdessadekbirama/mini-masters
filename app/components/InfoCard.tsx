@@ -5,28 +5,34 @@ export default function InfoCard({
   title,
   description,
   iconWidth,
-  pos,
+  posDesktop,
+  posMobile,
 }: {
   icon?: string;
   title?: ReactNode;
   description?: string;
   iconWidth?: number;
-  pos?: number;
+  posDesktop?: number;
+  posMobile?: number;
 }) {
   return (
     <div className="">
-      <div className="flex items-center relative justify-center w-[75%] m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div className="flex items-center relative justify-center md:w-[75%] md:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
         <img
           src={icon}
-          className="absolute"
-          style={{ width: iconWidth, left: pos }}
+          className="absolute md:hidden"
+          style={{ width: iconWidth, left: posMobile }}
           alt=""
         />
-        {/* <h1 className="font-bold text-xl text-center text-[#FDF9EF] py-0.5 pl-3 w-full"> */}
+        <img
+          src={icon}
+          className="absolute hidden md:block"
+          style={{ width: iconWidth, left: posDesktop }}
+          alt=""
+        />
         {title}
-        {/* </h1> */}
       </div>
-      <p className="text-[#67CD8A] font-medium text-center m-auto max-w-[75%] mt-8 ">
+      <p className="text-[#67CD8A] font-medium text-center m-auto md:max-w-[75%] mt-8 md:text-base text-sm">
         {description}
       </p>
     </div>
