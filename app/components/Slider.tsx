@@ -1,29 +1,4 @@
-"use client";
-
-import Marquee from "react-fast-marquee";
-import { useEffect, useState } from "react";
-
-const images = [
-  "/assets/hero-imgs/img1.png",
-  "/assets/hero-imgs/img2.jpg",
-  "/assets/hero-imgs/img3.jpg",
-  "/assets/hero-imgs/img4.jpg",
-  "/assets/hero-imgs/img5.png",
-  "/assets/hero-imgs/img6.jpg",
-];
-
-export default function AnimatedSlider() {
-  const [marqueeSpeed, setMarqueeSpeed] = useState(100);
-
-  useEffect(() => {
-    const updateSpeed = () => {
-      setMarqueeSpeed(window.innerWidth < 768 ? 50 : 100);
-    };
-    updateSpeed();
-    window.addEventListener("resize", updateSpeed);
-    return () => window.removeEventListener("resize", updateSpeed);
-  }, []);
-
+export default function Slider() {
   return (
     <>
       <svg
@@ -61,21 +36,26 @@ export default function AnimatedSlider() {
       </svg>
 
       <div
-        style={{ clipPath: "url(#wavyClip)" }}
-        className="w-full mt-2 md:h-screen h-62.5 overflow-hidden bg-white"
+        style={{ clipPath: "url(#wavyClip)" ,fontFamily:"Quicksand"}}
+        className="w-full mt-2 md:h-screen h-62.5 overflow-hidden bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] "
       >
-        <Marquee speed={marqueeSpeed} className="h-full overflow-hidden">
-          <div className="grid grid-cols-3 grid-rows-2 md:gap-3 gap-1 h-full md:p-1.5 p-0.75 md:w-[120vw] w-[160vw]">
-            {images.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt=""
-                className="w-full h-full object-cover rounded-sm"
-              />
-            ))}
-          </div>
-        </Marquee>
+        <div className="flex mt-28 w-fit px-10 py-4 pl-20 items-center relative justify-center md:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+          {/* <img
+          src="/assets/icons/badge2.svg"
+          className="absolute md:hidden"
+          style={{ width: "100px", left: "50%" }}
+          alt=""
+        /> */}
+          <img
+            src="/assets/icons/badge2.svg"
+            className="absolute hidden md:block"
+            style={{ width: "120px", left: -50 }}
+            alt=""
+          />
+          <h1 className="font-bold text-xl text-center text-[#FDF9EF] bg-linear-to-r py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
+            ONZE ARRANGEMENTEN
+          </h1>
+        </div>
       </div>
     </>
   );
