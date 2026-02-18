@@ -1,61 +1,3 @@
-// import Link from "next/link";
-
-// export default function Nav() {
-//   return (
-//     <div
-//       style={{ fontFamily: "StudlyFree, sans-serif" }}
-//       className="flex px-10 pt-8 pb-15 bg-[url('/assets/header-bg.svg')] bg-cover gap-50"
-//     >
-//       <Link href="/">
-//         <img src="/assets/logo.svg" className="w-72" alt="" />
-//       </Link>
-//       <div className="md:flex hidden gap-8 text-lg">
-//         <Link href="/" className="text-[#FF5757] ">
-//           HOME
-//         </Link>
-//         <Link href="#over-ons" className="text-[#5763FF]">
-//           OVER ONS
-//         </Link>
-//         <Link href="#tickets" className="text-[#FF5757]">
-//           TICKETS
-//         </Link>
-//         <Link href="#openingstijden" className="text-[#BB76FF]">
-//           OPENINGSTIJDEN
-//         </Link>
-//         <Link href="#faq" className="text-[#67CD8A]">
-//           FAQ
-//         </Link>
-//         <Link href="#contact" className="text-[#5763FF]">
-//           CONTACT
-//         </Link>
-//       </div>
-//       <div className="md:hidden flex flex-col bg-red-600 items-center gap-8 text-lg absolute w-2/3 py-2 right-0 translate-x-full">
-//         <Link href="/">
-//           <img src="/assets/logo.svg" className="w-full p-4" alt="" />
-//         </Link>
-//         <Link href="/" className="text-[#FF5757] ">
-//           HOME
-//         </Link>
-//         <Link href="#over-ons" className="text-[#5763FF]">
-//           OVER ONS
-//         </Link>
-//         <Link href="#tickets" className="text-[#FF5757]">
-//           TICKETS
-//         </Link>
-//         <Link href="#openingstijden" className="text-[#BB76FF]">
-//           OPENINGSTIJDEN
-//         </Link>
-//         <Link href="#faq" className="text-[#67CD8A]">
-//           FAQ
-//         </Link>
-//         <Link href="#contact" className="text-[#5763FF]">
-//           CONTACT
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// }
-
 "use client";
 
 import Link from "next/link";
@@ -67,7 +9,7 @@ export default function Nav() {
   return (
     <div
       style={{ fontFamily: "StudlyFree, sans-serif" }}
-      className="flex px-10 pt-8 pb-15 bg-[url('/assets/header-bg.svg')] bg-cover gap-50 relative w-screen overflow-hidden"
+      className="flex px-10 pt-8 pb-15 bg-[url('/assets/header-bg.svg')] bg-cover gap-50 relative overflow-hidden"
     >
       {/* Logo */}
       <Link href="/">

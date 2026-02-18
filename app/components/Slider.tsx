@@ -1,7 +1,59 @@
 export default function Slider() {
-  const Card = () => {
+  const data = [
+    {
+      bg: "img1.jpg",
+      text1: "Losse ticket",
+      text2: "1 persoon",
+    },
+    {
+      bg: "img2.jpg",
+      text1: "Groeps ticket",
+      text2: "2-4 persoon",
+    },
+    {
+      bg: "img3.png",
+      text1: "Abonnement",
+      text2: "90 min. lang speelplezier + Speelruimte 1 + Speelruimte 2",
+    },
+    {
+      bg: "img4.jpg",
+      text1: "Jaar abonnement",
+      text2: "Onbeperkt speelplezier + Speelruimte 1 + Speelruimte 2",
+    },
+    {
+      bg: "img5.jpg",
+      text1: "Kinderfeestje",
+      text2: "150 min. lang speelplezier + Speelruimte 1 & 2 + Restaurant",
+    },
+  ];
+
+  const Card = ({
+    bg,
+    text1,
+    text2,
+  }: {
+    bg: string;
+    text1: string;
+    text2: string;
+  }) => {
     return (
-      <div style={{ background: "url(/assets/slider/img1.jpg)" }} className="w-75 h-125">
+      <div
+        style={{
+          background: `url('/assets/slider/${bg}') no-repeat center/cover`,
+          boxShadow: "2px 4px 8px 0px #00000040",
+        }}
+        className="w-60 h-90 rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-between py-5 text-l"
+      >
+        <div
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
+            height: "80%",
+          }}
+          className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
+        />
+        <h1 className="z-20 text-center">{text1}</h1>
+        <h1 className="z-20  text-center px-5">{text2}</h1>
       </div>
     );
   };
@@ -43,27 +95,34 @@ export default function Slider() {
 
       <div
         style={{ clipPath: "url(#wavyClip)", fontFamily: "Quicksand" }}
-        className="w-full mt-2 md:h-screen h-62.5 overflow-hidden bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] "
+        className="w-full mt-2 md:h-[150vh] pt-44 h-[50vh] overflow-hidden bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] "
       >
-        <div className="flex mt-28 w-fit px-10 py-4 pl-20 items-center relative justify-center md:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-          {/* <img
-          src="/assets/icons/badge2.svg"
-          className="absolute md:hidden"
-          style={{ width: "100px", left: "50%" }}
-          alt=""
-        /> */}
+        <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+          <img
+            src="/assets/icons/badge2.svg"
+            className="absolute md:hidden"
+            style={{ width: "100px", left: "-10%" }}
+            alt=""
+          />
           <img
             src="/assets/icons/badge2.svg"
             className="absolute hidden md:block"
-            style={{ width: "120px", left: -50 }}
+            style={{ width: "130px", left: -50 }}
             alt=""
           />
-          <h1 className="font-bold text-xl text-center text-[#FDF9EF] bg-linear-to-r py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
+          <h1 className="font-bold md:text-xl text-center text-[#FDF9EF] bg-linear-to-r py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
             ONZE ARRANGEMENTEN
           </h1>
         </div>
-        <div>
-          <Card />
+        <div className="mt-15 flex justify-center items-center">
+          {data.map((item, index) => (
+            <Card
+              key={index}
+              bg={item.bg}
+              text1={item.text1}
+              text2={item.text2}
+            />
+          ))}
         </div>
       </div>
     </>
