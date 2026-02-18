@@ -1,4 +1,10 @@
 export default function Slider() {
+  const Card = () => {
+    return (
+      <div style={{ background: "url(/assets/slider/img1.jpg)" }} className="w-75 h-125">
+      </div>
+    );
+  };
   return (
     <>
       <svg
@@ -36,7 +42,7 @@ export default function Slider() {
       </svg>
 
       <div
-        style={{ clipPath: "url(#wavyClip)" ,fontFamily:"Quicksand"}}
+        style={{ clipPath: "url(#wavyClip)", fontFamily: "Quicksand" }}
         className="w-full mt-2 md:h-screen h-62.5 overflow-hidden bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] "
       >
         <div className="flex mt-28 w-fit px-10 py-4 pl-20 items-center relative justify-center md:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
@@ -55,6 +61,9 @@ export default function Slider() {
           <h1 className="font-bold text-xl text-center text-[#FDF9EF] bg-linear-to-r py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
             ONZE ARRANGEMENTEN
           </h1>
+        </div>
+        <div>
+          <Card />
         </div>
       </div>
     </>

@@ -67,7 +67,7 @@ export default function Nav() {
   return (
     <div
       style={{ fontFamily: "StudlyFree, sans-serif" }}
-      className="flex px-10 pt-8 pb-15 bg-[url('/assets/header-bg.svg')] bg-cover gap-50 relative"
+      className="flex px-10 pt-8 pb-15 bg-[url('/assets/header-bg.svg')] bg-cover gap-50 relative w-screen overflow-hidden"
     >
       {/* Logo */}
       <Link href="/">
@@ -79,11 +79,11 @@ export default function Nav() {
       </Link>
 
       {/* Desktop Nav */}
-      <div className="md:flex hidden gap-8 text-lg">
+      <div className="xl:flex hidden gap-8 text-lg">
         <Link href="/" className="text-[#FF5757]">
           HOME
         </Link>
-        <Link href="#over-ons" className="text-[#5763FF]">
+        <Link href="#over-ons" className="text-[#5763FF] text-nowrap">
           OVER ONS
         </Link>
         <Link href="#tickets" className="text-[#FF5757]">
@@ -103,7 +103,7 @@ export default function Nav() {
       {/* Hamburger Button (mobile only) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden flex flex-col justify-center items-center gap-1.5 ml-auto z-50 w-10 h-10 absolute top-0 right-0 m-2"
+        className="xl:hidden flex flex-col justify-center items-center gap-1.5 ml-auto z-50 w-10 h-10 absolute top-0 right-0 m-2"
         aria-label="Toggle menu"
       >
         <span
@@ -125,7 +125,7 @@ export default function Nav() {
       {isOpen && (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 ml-auto z-50 w-10 h-10 fixed top-0 right-0 m-2"
+          className="xl:hidden flex flex-col justify-center items-center gap-1.5 ml-auto z-50 w-10 h-10 fixed top-0 right-0 m-2"
           aria-label="Toggle menu"
         >
           <span
@@ -148,7 +148,7 @@ export default function Nav() {
 
       {/* Mobile Drawer */}
       <div
-        className={`md:hidden flex flex-col bg-[#FFCA58] items-center gap-8 text-lg fixed top-0 right-0 h-full w-2/3 py-8 z-40 transition-transform duration-300 ${
+        className={`xl:hidden flex flex-col bg-[#FFCA58] items-center gap-8 text-lg fixed top-0 right-0 h-full w-2/3 py-8 z-40 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -202,7 +202,7 @@ export default function Nav() {
       {/* Backdrop overlay */}
       {isOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/40 z-30"
+          className="xl:hidden fixed inset-0 bg-black/40 z-30"
           onClick={() => setIsOpen(false)}
         />
       )}

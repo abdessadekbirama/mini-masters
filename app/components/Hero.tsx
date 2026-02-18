@@ -58,14 +58,14 @@ export default function Hero() {
           className="absolute left-0 md:w-60 w-30"
           alt=""
         />
-        <h1 className="md:text-8xl text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit m-auto drop-shadow-lg">
+        <h1 className="md:text-8xl text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
           TINY HEROES
         </h1>
-        <h1 className="md:text-8xl text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit m-auto drop-shadow-lg">
+        <h1 className="md:text-8xl text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
           BIG ADVENTURES
         </h1>
       </div>
-      <div className="my-28 flex flex-col md:flex-row items-center justify-center gap-10 md:mx-24 mx-5">
+      <div className="my-28 flex flex-col lg:flex-row  items-center justify-center gap-10 md:mx-24 mx-5">
         {infoCards.map((card, index) => {
           return (
             <InfoCard

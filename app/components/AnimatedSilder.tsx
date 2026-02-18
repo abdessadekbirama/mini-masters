@@ -17,7 +17,7 @@ export default function AnimatedSlider() {
 
   useEffect(() => {
     const updateSpeed = () => {
-      setMarqueeSpeed(window.innerWidth < 768 ? 50 : 100);
+      setMarqueeSpeed(window.innerWidth < 768 ? 50 : 50);
     };
     updateSpeed();
     window.addEventListener("resize", updateSpeed);
@@ -62,18 +62,55 @@ export default function AnimatedSlider() {
 
       <div
         style={{ clipPath: "url(#wavyClip)" }}
-        className="w-full mt-2 md:h-screen h-62.5 overflow-hidden bg-white"
+        className="w-full mt-2 md:mt-8 xl:mt-0 xl:h-screen lg:h-130 md:h-100 h-62.5 2xl:h-200 overflow-hidden bg-white"
       >
         <Marquee speed={marqueeSpeed} className="h-full overflow-hidden">
           <div className="grid grid-cols-3 grid-rows-2 md:gap-3 gap-1 h-full md:p-1.5 p-0.75 md:w-[120vw] w-[160vw]">
-            {images.map((src, i) => (
+            {/* {images.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt=""
                 className="w-full h-full object-cover rounded-sm"
               />
-            ))}
+            ))} */}
+            <img
+              // key={i}
+              src="/assets/hero-imgs/img1.png"
+              alt=""
+              className="w-full h-full object-cover rounded-sm mb-10"
+            />
+            <img
+              // key={i}
+              src="/assets/hero-imgs/img2.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm mt-10"
+            />
+            <img
+              // key={i}
+              src="/assets/hero-imgs/img3.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm mt-20"
+            />
+            <img
+              // key={i}
+              src="/assets/hero-imgs/img4.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm mb-10 "
+            />
+            <img
+              // key={i}
+              src="/assets/hero-imgs/img5.png"
+              alt=""
+              className="w-full h-full object-cover rounded-sm mt-10"
+            />
+            <img
+              // key={i}
+              src="/assets/hero-imgs/img6.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm mt-20"
+            />
+            
           </div>
         </Marquee>
       </div>

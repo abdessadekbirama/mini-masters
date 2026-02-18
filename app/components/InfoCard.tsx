@@ -17,7 +17,7 @@ export default function InfoCard({
 }) {
   return (
     <div className="">
-      <div className="flex items-center relative justify-center md:w-[75%] md:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div className="flex items-center relative justify-center xl:w-[75%] xl:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
         <img
           src={icon}
           className="absolute md:hidden"
@@ -32,7 +32,7 @@ export default function InfoCard({
         />
         {title}
       </div>
-      <p className="text-[#67CD8A] font-medium text-center m-auto md:max-w-[75%] mt-8 md:text-base text-sm">
+      <p className="text-[#67CD8A] font-medium text-center m-auto xl:w-[75%] mt-8 md:text-base text-sm">
         {description}
       </p>
     </div>
