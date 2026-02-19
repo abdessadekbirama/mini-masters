@@ -231,8 +231,6 @@
 //     </>
 //   );
 // }
-
-
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
@@ -283,14 +281,17 @@ export default function Slider() {
     return () => observer.disconnect();
   }, []);
 
-  const CARD_WIDTH = 220;
-  const CARD_HEIGHT = 330;
-  const VISIBLE = Math.floor(total / 2);
+  const isMobile = screenW < 768;
+  const CARD_WIDTH = isMobile ? Math.round(220 * 2 / 3) : 220;   // ~147 on mobile
+  const CARD_HEIGHT = isMobile ? Math.round(330 * 2 / 3) : 330;  // ~220 on mobile
+  const VISIBLE = Math.floor(total / 2); // 2
 
   const ANGLE_STEP = 22;
-  const angleRad2 = (2 * ANGLE_STEP * Math.PI) / 180;
-  const targetX = screenW / 2 - CARD_WIDTH / 2 - 24;
-  const RADIUS = Math.max(targetX / Math.sin(angleRad2), 500);
+  // RADIUS derived so adjacent card centers are exactly CARD_WIDTH + GAP apart.
+  // Δx between slot 0 and slot 1 centers = RADIUS * sin(ANGLE_STEP) = CARD_WIDTH + GAP
+  const GAP = isMobile ? 14 : 24;
+  const angleRad1 = (ANGLE_STEP * Math.PI) / 180;
+  const RADIUS = (CARD_WIDTH + GAP) / Math.sin(angleRad1);
 
   const isAnimating = useRef(false);
   const [virtualIndex, setVirtualIndex] = useState(0);
@@ -342,7 +343,8 @@ export default function Slider() {
 
   const W = containerSize.w || 1440;
   const H = containerSize.h || 800;
-  const AMP = 40; // px — constant, independent of W and H
+  // Smaller wave amplitude on mobile
+  const AMP = isMobile ? 20 : 40;
 
   const wavePath = [
     // Top wave — left to right
@@ -354,9 +356,9 @@ export default function Slider() {
     `C ${W * 0.5471},${AMP * 0.25} ${W * 0.5738},${AMP * 0.08} ${W * 0.6221},${0}`,
     `C ${W * 0.6715},${-AMP * 0.08} ${W * 0.6994},${0} ${W * 0.7487},${AMP * 0.17}`,
     `C ${W * 0.8484},${AMP * 0.5}  ${W},${AMP * 1.67} ${W},${AMP * 1.67}`,
-    // Right side down to bottom-right
+    // Right side
     `L ${W},${H - AMP * 1.0}`,
-    // Bottom wave — right to left, mirroring the top wave horizontally and vertically
+    // Bottom wave — right to left
     `C ${W * (1 - 0.0335)},${H - AMP * 1.5}  ${W * (1 - 0.106)},${H - AMP * 1.83}  ${W * (1 - 0.106)},${H - AMP * 1.83}`,
     `C ${W * (1 - 0.1576)},${H - AMP * 2.0}  ${W * (1 - 0.1877)},${H - AMP * 1.92} ${W * (1 - 0.2397)},${H - AMP * 1.83}`,
     `C ${W * (1 - 0.2916)},${H - AMP * 1.75} ${W * (1 - 0.3202)},${H - AMP * 1.5}  ${W * (1 - 0.3715)},${H - AMP * 1.25}`,
@@ -378,7 +380,7 @@ export default function Slider() {
           position: "relative",
           clipPath: `url(#${clipId})`,
         }}
-        className="w-full mt-2 md:h-fit h-[70vh] pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
+        className="w-full mt-2 md:h-fit h-screen pt-28 md:pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
         {/* Zero-size SVG — invisible, only defines clip geometry */}
         <svg
