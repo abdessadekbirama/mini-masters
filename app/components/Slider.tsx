@@ -1,236 +1,3 @@
-
-// "use client";
-
-// import { useEffect, useState, useCallback, useRef } from "react";
-
-// export default function Slider() {
-//   const data = [
-//     { bg: "img1.jpg", text1: "Losse ticket", text2: "1 persoon" },
-//     { bg: "img2.jpg", text1: "Groeps ticket", text2: "2-4 persoon" },
-//     {
-//       bg: "img3.png",
-//       text1: "Abonnement",
-//       text2: "90 min. lang speelplezier + Speelruimte 1 + Speelruimte 2",
-//     },
-//     {
-//       bg: "img4.jpg",
-//       text1: "Jaar abonnement",
-//       text2: "Onbeperkt speelplezier + Speelruimte 1 + Speelruimte 2",
-//     },
-//     {
-//       bg: "img5.jpg",
-//       text1: "Kinderfeestje",
-//       text2: "150 min. lang speelplezier + Speelruimte 1 & 2 + Restaurant",
-//     },
-//   ];
-
-//   const total = data.length;
-
-//   const [screenW, setScreenW] = useState(1440);
-//   const containerRef = useRef<HTMLDivElement>(null);
-//   const [containerSize, setContainerSize] = useState({ w: 1440, h: 800 });
-
-//   useEffect(() => {
-//     const updateScreen = () => setScreenW(window.innerWidth);
-//     updateScreen();
-//     window.addEventListener("resize", updateScreen);
-//     return () => window.removeEventListener("resize", updateScreen);
-//   }, []);
-
-//   // ResizeObserver — fires only when size actually changes, no infinite loop
-//   useEffect(() => {
-//     const el = containerRef.current;
-//     if (!el) return;
-//     const observer = new ResizeObserver((entries) => {
-//       const { width, height } = entries[0].contentRect;
-//       setContainerSize({ w: width, h: height });
-//     });
-//     observer.observe(el);
-//     setContainerSize({ w: el.offsetWidth, h: el.offsetHeight });
-//     return () => observer.disconnect();
-//   }, []);
-
-//   const CARD_WIDTH = 200;
-//   const CARD_HEIGHT = 350;
-//   const VISIBLE = Math.floor(total / 2);
-
-//   const ANGLE_STEP = 22;
-//   const angleRad2 = (2 * ANGLE_STEP * Math.PI) / 180;
-//   const targetX = screenW / 2 - CARD_WIDTH / 2 - 24;
-//   const RADIUS = Math.max(targetX / Math.sin(angleRad2), 500);
-
-//   const isAnimating = useRef(false);
-//   const [virtualIndex, setVirtualIndex] = useState(0);
-//   const cardVirtual = useRef<number[]>(data.map((_, i) => i));
-
-//   const next = useCallback(() => {
-//     if (isAnimating.current) return;
-//     isAnimating.current = true;
-//     setVirtualIndex((prev) => {
-//       const nextV = prev + 1;
-//       const leavingDataIndex = (((prev - VISIBLE) % total) + total) % total;
-//       cardVirtual.current[leavingDataIndex] = nextV + VISIBLE;
-//       return nextV;
-//     });
-//     setTimeout(() => { isAnimating.current = false; }, 520);
-//   }, [total, VISIBLE]);
-
-//   useEffect(() => {
-//     const interval = setInterval(next, 3000);
-//     return () => clearInterval(interval);
-//   }, [next]);
-
-//   const getSlot = (index: number) => cardVirtual.current[index] - virtualIndex;
-
-//   const getCardStyle = (slot: number): React.CSSProperties => {
-//     const angleDeg = slot * ANGLE_STEP;
-//     const angleRad = (angleDeg * Math.PI) / 180;
-//     const x = RADIUS * Math.sin(angleRad);
-//     const y = RADIUS * (1 - Math.cos(angleRad)) * 0.45;
-//     const absSlot = Math.abs(slot);
-//     const scale = absSlot === 0 ? 1 : absSlot === 1 ? 0.88 : 0.76;
-//     const zIndex = absSlot === 0 ? 5 : absSlot === 1 ? 3 : 1;
-//     const hidden = absSlot > VISIBLE;
-//     return {
-//       position: "absolute",
-//       width: `${CARD_WIDTH}px`,
-//       left: `calc(50% + ${x}px - ${CARD_WIDTH / 2}px)`,
-//       top: `${y}px`,
-//       transform: `rotate(${angleDeg * 0.6}deg) scale(${scale})`,
-//       transformOrigin: "bottom center",
-//       zIndex,
-//       opacity: hidden ? 0 : 1,
-//       transition: hidden
-//         ? "none"
-//         : "left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease",
-//       pointerEvents: hidden ? "none" : "auto",
-//     };
-//   };
-
-//   // --- Wave clip path in absolute pixel coordinates ---
-//   // AMP is a fixed pixel value — the wave amplitude never changes with container height.
-//   const W = containerSize.w || 1440;
-//   const H = containerSize.h || 800;
-//   const AMP = 40; // px — constant, independent of W and H
-
-//   const wavePath = [
-//     `M 0,${AMP * 1.0}`,
-//     `C ${W * 0.0335},${AMP * 1.5}  ${W * 0.106},${AMP * 1.83}  ${W * 0.106},${AMP * 1.83}`,
-//     `C ${W * 0.1576},${AMP * 2.0}  ${W * 0.1877},${AMP * 1.92} ${W * 0.2397},${AMP * 1.83}`,
-//     `C ${W * 0.2916},${AMP * 1.75} ${W * 0.3202},${AMP * 1.5}  ${W * 0.3715},${AMP * 1.25}`,
-//     `C ${W * 0.4216},${AMP * 1.0}  ${W * 0.4492},${AMP * 0.67} ${W * 0.4994},${AMP * 0.5}`,
-//     `C ${W * 0.5471},${AMP * 0.25} ${W * 0.5738},${AMP * 0.08} ${W * 0.6221},${0}`,
-//     `C ${W * 0.6715},${-AMP * 0.08} ${W * 0.6994},${0} ${W * 0.7487},${AMP * 0.17}`,
-//     `C ${W * 0.8484},${AMP * 0.5}  ${W},${AMP * 1.67} ${W},${AMP * 1.67}`,
-//     `L ${W},${H - AMP * 1.67}`,
-//     `C ${W * 0.929},${H - AMP * 2.17}  ${W * 0.8821},${H - AMP * 2.25} ${W * 0.8821},${H - AMP * 2.25}`,
-//     `C ${W * 0.8305},${H - AMP * 2.42} ${W * 0.8021},${H - AMP * 2.5}  ${W * 0.75},${H - AMP * 2.5}`,
-//     `C ${W * 0.7022},${H - AMP * 2.5}  ${W * 0.6738},${H - AMP * 2.42} ${W * 0.6263},${H - AMP * 2.25}`,
-//     `C ${W * 0.5761},${H - AMP * 2.08} ${W * 0.5492},${H - AMP * 1.67} ${W * 0.5},${H - AMP * 1.08}`,
-//     `C ${W * 0.4532},${H - AMP * 0.58} ${W * 0.4189},${H - AMP * 0.33} ${W * 0.3715},${H - AMP * 0.12}`,
-//     `C ${W * 0.3214},${H + AMP * 0.08}  ${W * 0.2905},${H + AMP * 0.17} ${W * 0.2397},${H}`,
-//     `C ${W * 0.1893},${H - AMP * 0.08}  ${W * 0.1557},${H - AMP * 0.17} ${W * 0.106},${H - AMP * 0.42}`,
-//     `C ${W * 0.0577},${H - AMP * 0.67}  ${0},${H - AMP * 1.17} ${0},${H - AMP * 1.17}`,
-//     `Z`,
-//   ].join(" ");
-
-//   const clipId = "wavyClipFixed";
-
-//   return (
-//     <>
-//       {/*
-//         The SVG <defs> sit inside the container. With clipPathUnits="userSpaceOnUse",
-//         coordinates map to the element being clipped (the container itself):
-//         (0,0) = container top-left, (W,H) = container bottom-right.
-
-//         The clipPath is applied to the outer container via style.clipPath so the
-//         wave cuts into the page — visible against whatever surrounds the section.
-
-//         overflow-hidden is intentionally removed so the clipped edge is exposed.
-//       */}
-//       <div
-//         ref={containerRef}
-//         style={{
-//           fontFamily: "Quicksand",
-//           position: "relative",
-//           clipPath: `url(#${clipId})`,
-//         }}
-//         className="w-full mt-2 md:h-fit h-[70vh] pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
-//       >
-//         {/* Zero-size SVG — invisible, only defines clip geometry */}
-//         <svg
-//           aria-hidden="true"
-//           style={{
-//             position: "absolute",
-//             width: 0,
-//             height: 0,
-//             overflow: "visible",
-//             pointerEvents: "none",
-//           }}
-//         >
-//           <defs>
-//             <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-//               <path d={wavePath} />
-//             </clipPath>
-//           </defs>
-//         </svg>
-
-//         {/* Header badge */}
-//         <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-//           <img
-//             src="/assets/icons/badge2.svg"
-//             className="absolute md:hidden"
-//             style={{ width: "100px", left: "-10%" }}
-//             alt=""
-//           />
-//           <img
-//             src="/assets/icons/badge2.svg"
-//             className="absolute hidden md:block"
-//             style={{ width: "130px", left: -50 }}
-//             alt=""
-//           />
-//           <h1 className="font-bold md:text-xl text-center text-[#FDF9EF] py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
-//             ONZE ARRANGEMENTEN
-//           </h1>
-//         </div>
-
-//         {/* Arc Carousel */}
-//         <div
-//           className="relative mt-10 w-full mb-32"
-//           style={{ height: `${CARD_HEIGHT + 180}px`, overflow: "visible" }}
-//         >
-//           {data.map((item, index) => {
-//             const slot = getSlot(index);
-//             return (
-//               <div key={index} style={getCardStyle(slot)}>
-//                 <div
-//                   style={{
-//                     background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
-//                     boxShadow: "4px 8px 24px 0px #00000055",
-//                     height: `${CARD_HEIGHT}px`,
-//                   }}
-//                   className="rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-between py-5 cursor-pointer"
-//                   onClick={next}
-//                 >
-//                   <div
-//                     style={{
-//                       background:
-//                         "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
-//                       height: "80%",
-//                     }}
-//                     className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
-//                   />
-//                   <h1 className="z-20 text-center text-sm px-3">{item.text1}</h1>
-//                   <h1 className="z-20 text-center px-5 text-sm">{item.text2}</h1>
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
@@ -282,8 +49,8 @@ export default function Slider() {
   }, []);
 
   const isMobile = screenW < 768;
-  const CARD_WIDTH = isMobile ? Math.round(220 * 2 / 3) : 220;   // ~147 on mobile
-  const CARD_HEIGHT = isMobile ? Math.round(330 * 2 / 3) : 330;  // ~220 on mobile
+  const CARD_WIDTH = isMobile ? Math.round((220 * 2) / 3) : 220; // ~147 on mobile
+  const CARD_HEIGHT = isMobile ? Math.round((330 * 2) / 3) : 330; // ~220 on mobile
   const VISIBLE = Math.floor(total / 2); // 2
 
   const ANGLE_STEP = 22;
@@ -306,7 +73,9 @@ export default function Slider() {
       cardVirtual.current[leavingDataIndex] = nextV + VISIBLE;
       return nextV;
     });
-    setTimeout(() => { isAnimating.current = false; }, 520);
+    setTimeout(() => {
+      isAnimating.current = false;
+    }, 520);
   }, [total, VISIBLE]);
 
   useEffect(() => {
@@ -380,7 +149,7 @@ export default function Slider() {
           position: "relative",
           clipPath: `url(#${clipId})`,
         }}
-        className="w-full mt-2 md:h-fit h-screen pt-28 md:pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
+        className="w-full relative mt-2 md:h-fit h-screen pt-28 md:pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
         {/* Zero-size SVG — invisible, only defines clip geometry */}
         <svg
@@ -399,7 +168,16 @@ export default function Slider() {
             </clipPath>
           </defs>
         </svg>
-
+        <img
+          src="/assets/icons/cards-icon1.svg"
+          className="absolute right-0 top-10 md:w-80 w-30"
+          alt=""
+        />
+        <img
+          src="/assets/icons/cards-icon2.svg"
+          className="absolute left-0 md:w-40 w-20"
+          alt=""
+        />
         {/* Header badge */}
         <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
           <img
@@ -445,8 +223,12 @@ export default function Slider() {
                     }}
                     className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
                   />
-                  <h1 className="z-20 text-center text-sm px-3">{item.text1}</h1>
-                  <h1 className="z-20 text-center px-5 text-sm">{item.text2}</h1>
+                  <h1 className="z-20 text-center text-sm px-3">
+                    {item.text1}
+                  </h1>
+                  <h1 className="z-20 text-center px-5 text-sm">
+                    {item.text2}
+                  </h1>
                 </div>
               </div>
             );
