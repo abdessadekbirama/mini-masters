@@ -78,39 +78,38 @@ export default function AnimatedSlider() {
               // key={i}
               src="/assets/hero-imgs/img1.png"
               alt=""
-              className="w-full h-full object-cover rounded-sm mb-10"
+              className="w-full h-full object-cover rounded-sm -mt-5"
             />
             <img
               // key={i}
               src="/assets/hero-imgs/img2.jpg"
               alt=""
-              className="w-full h-full object-cover rounded-sm mt-10"
+              className="w-full h-full object-cover rounded-sm -mt-10"
             />
             <img
               // key={i}
               src="/assets/hero-imgs/img3.jpg"
               alt=""
-              className="w-full h-full object-cover rounded-sm mt-20"
+              className="w-full h-full object-cover rounded-sm "
             />
             <img
               // key={i}
               src="/assets/hero-imgs/img4.jpg"
               alt=""
-              className="w-full h-full object-cover rounded-sm mb-10 "
+              className="w-full h-full object-cover rounded-sm -mt-5"
             />
             <img
               // key={i}
               src="/assets/hero-imgs/img5.png"
               alt=""
-              className="w-full h-full object-cover rounded-sm mt-10"
+              className="w-full h-full object-cover rounded-sm -mt-10"
             />
             <img
               // key={i}
               src="/assets/hero-imgs/img6.jpg"
               alt=""
-              className="w-full h-full object-cover rounded-sm mt-20"
+              className="w-full h-full object-cover rounded-sm "
             />
-            
           </div>
         </Marquee>
       </div>
