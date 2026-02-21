@@ -4,7 +4,7 @@ export default function MobileSection() {
   return (
     <div
       style={{ fontFamily: "Quicksand" }}
-      className="relative flex md:flex-row flex-col px-10 overflow-hidden pt-10 md:gap-0 gap-10"
+      className="relative flex md:flex-row flex-col px-10 overflow-hidden pt-10 pb-5 md:gap-0 gap-10"
     >
       <div className="relative flex md:flex-col flex-col-reverse items-center md:gap-8 gap-5">
         <div className="w-fit">
