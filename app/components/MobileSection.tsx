@@ -4,8 +4,23 @@ export default function MobileSection() {
   return (
     <div
       style={{ fontFamily: "Quicksand" }}
-      className="relative flex md:flex-row flex-col px-10 overflow-hidden pt-10 pb-5 md:gap-0 gap-10"
+      className="relative flex md:flex-row flex-col px-10 overflow-hidde pt-10 pb-32 md:gap-0 gap-10"
     >
+      <img
+        src="/assets/mobile/icon1.svg"
+        className="absolute right-0 -top-20 md:w-60 w-30"
+        alt=""
+      />
+      <img
+        src="/assets/mobile/icon2.svg"
+        className="absolute md:bottom-0 md:w-60 w-30 md:left-1/2 md:-translate-x-[80%] right-0 bottom-[60%] -z-10 translate-y-[30%] md:translate-y-0"
+        alt=""
+      />
+      <img
+        src="/assets/mobile/icon3.svg"
+        className="absolute left-0 top-20 md:w-40 w-30"
+        alt=""
+      />
       <div className="relative flex md:flex-col flex-col-reverse items-center md:gap-8 gap-5">
         <div className="w-fit">
           <Mobile
