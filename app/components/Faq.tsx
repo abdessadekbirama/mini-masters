@@ -2,50 +2,220 @@
 import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 
-export default function Faq() {
-  const [clicked, setClicked] = useState(false);
+type FaqItem = {
+  question: string;
+  answer: React.ReactNode;
+};
 
-  const toggleClick = () => {
-    setClicked(!clicked);
-  };
+type FaqCategory = {
+  bg: string;
+  title: string;
+  items: FaqItem[];
+  text: string;
+};
 
-  const Card = () => {
-    return (
-      <div className="flex flex-col items-center mt-10 w-full">
-        <h1 className="font-bold text-[#67CD8A] text-xl text-center mb-4 ">
-          Algemene vragen
-        </h1>
-        <div
-          onClick={toggleClick}
-          className={`w-full cursor-pointer p-4 px-6 rounded-xl ${clicked ? "bg-[#67CD8A]" : "bg-[#FFFCF6]"}`}
+const data: FaqCategory[] = [
+  {
+    text: "#67CD8A",
+    bg: "#FFFCF6",
+    title: "Algemene vragen",
+    items: [
+      {
+        question: "Waar ligt Minimasters?",
+        answer: (
+          <>
+            Minimasters is een unieke belevingswereld waar kinderen
+            spelenderwijs de grote-mensenwereld ontdekken. Van een eigen
+            restaurant tot verschillende speelruimtes zoals een spa, café en
+            zelfs een supermarkt – alles is ingericht om fantasie, creativiteit
+            en rollenspel te stimuleren. Bij Minimasters kunnen kinderen koken,
+            werken, ontspannen en winkelen in een veilige en interactieve
+            omgeving. Een plek waar leren en spelen samenkomen en elk bezoek een
+            nieuw avontuur is!
+          </>
+        ),
+      },
+      {
+        question: "Wat is Minimasters?",
+        answer: (
+          <>
+            Minimasters is een unieke belevingswereld waar kinderen
+            spelenderwijs de grote-mensenwereld ontdekken. Van een eigen
+            restaurant tot verschillende speelruimtes zoals een spa, café en
+            zelfs een supermarkt – alles is ingericht om fantasie, creativiteit
+            en rollenspel te stimuleren. Bij Minimasters kunnen kinderen koken,
+            werken, ontspannen en winkelen in een veilige en interactieve
+            omgeving. Een plek waar leren en spelen samenkomen en elk bezoek een
+            nieuw avontuur is!
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    text: "#BB76FF",
+    bg: "#F5EBFF",
+    title: "Tarieven",
+    items: [
+      {
+        question: "Hoe werken de arrangementen?",
+        answer: (
+          <>
+            Wij werken dagelijks met drie vaste sessies van elk 2,5 uur. Tussen
+            iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer
+            schoon en klaar is voor de volgende groep kinderen. Op deze manier
+            zorgen wij iedere sessie opnieuw voor een fijne en veilige
+            speelervaring. Elke sessie heeft een eigen naam, maar het aanbod aan
+            activiteiten en het spelen is in elke sessie hetzelfde. Onze
+            sessies: Sessie 1 – De Kick Start: 09:00 – 11:30 Sessie 2 – Middag
+            Avontuur: 12:00 – 14:30 Sessie 3 – Eindpret: 15:00 – 17:30 Na het
+            selecteren van een sessie kun je aangeven met hoeveel kinderen en
+            volwassenen je komt. De entreeprijs bedraagt €11,00 per persoon,
+            zowel voor kinderen als volwassenen.
+          </>
+        ),
+      },
+      {
+        question: "Welke betaalmethoden worden geaccepteerd?",
+        answer: (
+          <>
+            Bij Minimasters kun je betalen met Maestro en creditcard. Andere
+            betaalmethoden worden op dit moment niet geaccepteerd.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    text: "#5763FF",
+    bg: "#EAECFF",
+    title: "Activiteiten",
+    items: [
+      {
+        question: "Welke activiteiten zijn er?",
+        answer: (
+          <>
+            Onze ruimte is ingericht als een klein dorp met verschillende
+            huisjes, waar kinderen spelenderwijs verschillende beroepen en
+            dagelijkse situaties kunnen ontdekken. Zo kunnen kinderen onder
+            andere: Koeien melk geven Boodschappen doen in de supermarkt Spelen
+            in het politiebureau Sleutelen in de autogarage En nog veel meer!
+            Alles staat in het teken van fantasie, ontdekken en samen spelen.
+          </>
+        ),
+      },
+      {
+        question: "Is Minimasters geschikt voor kinderfeestjes?",
+        answer: (
+          <>
+            Ja! Bij het reserveren van een sessie kun je ook kiezen voor een
+            verjaardagsarrangement. Wij bieden twee soorten kinderfeestjes aan:
+            Verjaardag type 1 (uitleg volgt) Verjaardag type 2 (uitleg volgt)
+          </>
+        ),
+      },
+    ],
+  },
+];
+
+const AccordionItem = ({
+  question,
+  answer,
+  text,
+  bg,
+}: {
+  text: string;
+  bg: string;
+  question: string;
+  answer: React.ReactNode;
+}) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      onClick={() => setOpen((prev) => !prev)}
+      className="w-full cursor-pointer p-4 px-6 rounded-xl mb-3"
+      style={{
+        overflow: "hidden",
+        backgroundColor: open ? text : bg,
+        transition: "background-color 0.3s ease",
+      }}
+    >
+      <div className="flex items-center justify-between w-full">
+        <h2
+          className="font-bold text-lg"
+          style={{
+            color: open ? "#ffffff" : text,
+            transition: "color 0.3s ease",
+          }}
         >
-          <div className="flex items-center justify-between w-full">
-            <h1
-              className={`font-bold text-lg ${clicked ? "text-white" : "text-[#67CD8A]"}`}
-            >
-              Waar ligt Minimasters?
-            </h1>
-            <ChevronDown
-              className={` ${clicked ? "text-white" : "text-[#F6CB78]"}`}
-            />
-          </div>
-          {clicked && (
-            <p className="text-white font-medium text-base">
-              Minimasters ligt in het hart van de stad, aan de rand van het
-              centrum.
-            </p>
-          )}
+          {question}
+        </h2>
+        <ChevronDown
+          style={{
+            color: open ? "#ffffff" : text,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease, color 0.3s ease",
+            flexShrink: 0,
+          }}
+        />
+      </div>
+
+      {/* Animated answer */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateRows: open ? "1fr" : "0fr",
+          transition: "grid-template-rows 0.35s ease",
+        }}
+      >
+        <div style={{ overflow: "hidden" }}>
+          <p
+            className="text-white font-medium text-base mt-3"
+            style={{
+              opacity: open ? 1 : 0,
+              transform: open ? "translateY(0)" : "translateY(8px)",
+              transition: "opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s",
+            }}
+          >
+            {answer}
+          </p>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
+const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
+  return (
+    <div className="flex flex-col items-center mt-5 w-full">
+      <h2
+        className="font-bold text-[22px] text-center mb-2"
+        style={{ color: text }}
+      >
+        {title}
+      </h2>
+      {items.map((item, index) => (
+        <AccordionItem
+          text={text}
+          bg={bg}
+          key={index}
+          question={item.question}
+          answer={item.answer}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default function Faq() {
   return (
     <div className="my-24" style={{ fontFamily: "Quicksand" }}>
-      <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div className="flex w-fit md:px-10 px-5 py-4 md:pl-20 pl-10 md:translate-x-0 translate-x-5 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
         <img
           src="/assets/faq/icon.svg"
           className="absolute md:hidden"
-          style={{ width: "100px", left: "-10%" }}
+          style={{ width: "120px", left: "-20%" }}
           alt=""
         />
         <img
@@ -58,8 +228,16 @@ export default function Faq() {
           VEELGESTELDE VRAGEN
         </h1>
       </div>
-      <div className="w-1/2 flex flex-col items-center m-auto">
-        <Card />
+      <div className="md:w-1/2 w-full md:px-0 px-5 flex flex-col items-center m-auto mt-10">
+        {data.map((category, index) => (
+          <CategoryCard
+            bg={category.bg}
+            text={category.text}
+            key={index}
+            title={category.title}
+            items={category.items}
+          />
+        ))}
       </div>
     </div>
   );
