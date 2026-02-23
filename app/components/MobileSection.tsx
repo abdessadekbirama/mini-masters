@@ -13,7 +13,7 @@ export default function MobileSection() {
       />
       <img
         src="/assets/mobile/icon2.svg"
-        className="absolute md:bottom-0 md:w-60 w-30 md:left-1/2 md:-translate-x-[80%] right-0 bottom-[60%] -z-10 translate-y-[30%] md:translate-y-0"
+        className="absolute md:-bottom-40 md:w-80 w-30 md:left-1/2 md:-translate-x-[80%] right-0 bottom-[60%] -z-10 translate-y-[30%] md:translate-y-0"
         alt=""
       />
       <img
