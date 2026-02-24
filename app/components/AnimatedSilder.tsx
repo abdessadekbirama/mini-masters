@@ -15,7 +15,7 @@ const images = [
 export default function AnimatedSlider({
   direction = "left",
 }: {
-  direction: "left" | "right";
+  direction?: "left" | "right";
 }) {
   const [marqueeSpeed, setMarqueeSpeed] = useState(100);
 
