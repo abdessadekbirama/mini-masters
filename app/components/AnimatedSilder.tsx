@@ -12,7 +12,11 @@ const images = [
   "/assets/hero-imgs/img6.jpg",
 ];
 
-export default function AnimatedSlider() {
+export default function AnimatedSlider({
+  direction = "left",
+}: {
+  direction: "left" | "right";
+}) {
   const [marqueeSpeed, setMarqueeSpeed] = useState(100);
 
   useEffect(() => {
@@ -64,7 +68,11 @@ export default function AnimatedSlider() {
         style={{ clipPath: "url(#wavyClip)" }}
         className="w-full mt-2 md:mt-8 xl:mt-0 xl:h-screen lg:h-130 md:h-100 h-62.5 2xl:h-200 overflow-hidden bg-white"
       >
-        <Marquee speed={marqueeSpeed} className="h-full overflow-hidden">
+        <Marquee
+          speed={marqueeSpeed}
+          direction={direction}
+          className="h-full overflow-hidden"
+        >
           <div className="grid grid-cols-3 grid-rows-2 md:gap-3 gap-1 h-full md:p-1.5 p-0.75 md:w-[120vw] w-[160vw]">
             <img
               // key={i}

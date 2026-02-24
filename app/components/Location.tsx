@@ -28,14 +28,14 @@ export default function Location() {
 
       <div
         style={{ fontFamily: "Quicksand" }}
-        className="relative w-full md:mt-8 xl:mt-0 xl:h-screen lg:h-130 md:h-100 h-fit 2xl:h-200"
+        className="relative w-full md:mt-8 xl:mt-0 xl:h-screen lg:[50vh] md:h-[70vh] h-fit 2xl:h-200"
       >
         <div
           style={{ clipPath: "url(#wavyClipExact)" }}
           className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
         />
 
-        <div className="relative flex md:flex-row flex-col justify-between items-center md:px-20 px-15 md:top-1/2 md:-translate-y-1/2 bottom-0">
+        <div className="relative flex md:flex-row flex-col justify-between items-center md:px-5 lg:px-10 xl:20 px-15 md:top-1/2 md:-translate-y-1/2 bottom-0">
           <img
             src="/assets/location/img3.svg"
             className="absolute left-0 md:-z-10 md:w-30 w-20 top-1/2 md:-translate-y-[20%]"

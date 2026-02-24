@@ -228,7 +228,7 @@ export default function Faq() {
           VEELGESTELDE VRAGEN
         </h1>
       </div>
-      <div className="md:w-1/2 w-full md:px-0 px-5 flex flex-col items-center m-auto mt-10">
+      <div className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-5 flex flex-col items-center m-auto mt-10">
         {data.map((category, index) => (
           <CategoryCard
             bg={category.bg}
