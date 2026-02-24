@@ -5,7 +5,16 @@ export default function Footer() {
     return (
       <div className="bg-[linear-gradient(230.02deg,#67CD8A_6.27%,#A5DEB9_23.12%,#67CD8A_64.82%,#67CD8A_64.83%,#67CD8A_93.89%)] p-10 rounded-2xl text-white">
         <h1 className="font-bold text-xl">Title</h1>
-        <span>role</span>
+        <span className="text-lg">role</span>
+        <img
+          src="/assets/footer/stars.svg"
+          className="rotate-[12.5deg] mt-3"
+          alt=""
+        />
+        <p>
+          Alles ziet er veilig, creatief en super speels uit. Mijn zoontje
+          vraagt nu al wanneer het open gaat!
+        </p>
       </div>
     );
   };
@@ -41,10 +50,10 @@ export default function Footer() {
         </defs>
       </svg>
 
-      <div className="absolute inset-0 flex items-center justify-center gap-10">
+      <div className="absolute inset-0 flex items-center justify-center gap-20 mx-20">
         <div className="flex flex-col gap-10 items-center">
           <Link href="/">
-            <img src="/assets/footer/logo.svg" className="w-90" alt="" />
+            <img src="/assets/footer/logo.svg" className="" alt="" />
           </Link>
           <div className="flex gap-5">
             <Link href="#">
@@ -62,6 +71,9 @@ export default function Footer() {
               />
             </Link>
           </div>
+        </div>
+        <div>
+          <Card />
         </div>
         <div>
           <Card />
