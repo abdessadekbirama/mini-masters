@@ -1,8 +1,19 @@
 import Link from "next/link";
-
+const cards = [{}];
 export default function Footer() {
+  const Card = () => {
+    return (
+      <div className="bg-[linear-gradient(230.02deg,#67CD8A_6.27%,#A5DEB9_23.12%,#67CD8A_64.82%,#67CD8A_64.83%,#67CD8A_93.89%)] p-10 rounded-2xl text-white">
+        <h1 className="font-bold text-xl">Title</h1>
+        <span>role</span>
+      </div>
+    );
+  };
   return (
-    <div className="relative w-full h-screen -mt-20 ">
+    <div
+      style={{ fontFamily: "Nunito Variable" }}
+      className="relative w-full h-screen -mt-20 "
+    >
       <svg
         viewBox="0 0 1752 980"
         fill="none"
@@ -30,14 +41,30 @@ export default function Footer() {
         </defs>
       </svg>
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <div>
+      <div className="absolute inset-0 flex items-center justify-center gap-10">
+        <div className="flex flex-col gap-10 items-center">
           <Link href="/">
-            <img src="/assets/footer/logo.svg" alt="" />
+            <img src="/assets/footer/logo.svg" className="w-90" alt="" />
           </Link>
-          <div>
-            <Link href="#"></Link>
+          <div className="flex gap-5">
+            <Link href="#">
+              <img
+                src="/assets/footer/insta.svg"
+                className="rounded-full w-12"
+                alt=""
+              />
+            </Link>
+            <Link href="#">
+              <img
+                src="/assets/footer/tiktok.svg"
+                className="rounded-full w-12"
+                alt=""
+              />
+            </Link>
           </div>
+        </div>
+        <div>
+          <Card />
         </div>
       </div>
     </div>
