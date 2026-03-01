@@ -10,16 +10,19 @@ const cardData = [
     role: "Directrice",
     text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
   },
+  
   {
-    title: "Sophie M.",
-    role: "Ouder",
-    text: "Geweldige plek voor kinderen! Ze komen altijd met een grote glimlach thuis. Absolute aanrader!",
+    title: "Emily J.",
+    role: "Directrice",
+    text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
   },
+
   {
-    title: "Thomas K.",
-    role: "Vader",
-    text: "De begeleiders zijn super professioneel en lief. Mijn dochter wil elke dag komen spelen!",
+    title: "Emily J.",
+    role: "Directrice",
+    text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
   },
+  
 ];
 
 const POSITION_ROTATE: Record<CardState, string> = {

@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 type FaqItem = {
   question: string;
@@ -20,21 +21,7 @@ const data: FaqCategory[] = [
     bg: "#FFFCF6",
     title: "Algemene vragen",
     items: [
-      {
-        question: "Waar ligt Minimasters?",
-        answer: (
-          <>
-            Minimasters is een unieke belevingswereld waar kinderen
-            spelenderwijs de grote-mensenwereld ontdekken. Van een eigen
-            restaurant tot verschillende speelruimtes zoals een spa, café en
-            zelfs een supermarkt – alles is ingericht om fantasie, creativiteit
-            en rollenspel te stimuleren. Bij Minimasters kunnen kinderen koken,
-            werken, ontspannen en winkelen in een veilige en interactieve
-            omgeving. Een plek waar leren en spelen samenkomen en elk bezoek een
-            nieuw avontuur is!
-          </>
-        ),
-      },
+      
       {
         question: "Wat is Minimasters?",
         answer: (
@@ -118,6 +105,37 @@ const data: FaqCategory[] = [
   },
 ];
 
+// Framer Motion variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+};
+
 const AccordionItem = ({
   question,
   answer,
@@ -132,69 +150,85 @@ const AccordionItem = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      onClick={() => setOpen((prev) => !prev)}
-      className="w-full cursor-pointer p-4 px-6 rounded-xl mb-3"
-      style={{
-        overflow: "hidden",
-        backgroundColor: open ? text : bg,
-        transition: "background-color 0.3s ease",
-      }}
+    <motion.div
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-40px" }}
+      className="w-full"
     >
-      <div className="flex items-center justify-between w-full">
-        <h2
-          className="font-bold text-lg"
-          style={{
-            color: open ? "#ffffff" : text,
-            transition: "color 0.3s ease",
-          }}
-        >
-          {question}
-        </h2>
-        <ChevronDown
-          style={{
-            color: open ? "#ffffff" : text,
-            transform: open ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.3s ease, color 0.3s ease",
-            flexShrink: 0,
-          }}
-        />
-      </div>
-
-      {/* Animated answer */}
       <div
+        onClick={() => setOpen((prev) => !prev)}
+        className="w-full cursor-pointer p-4 px-6 rounded-xl mb-3"
         style={{
-          display: "grid",
-          gridTemplateRows: open ? "1fr" : "0fr",
-          transition: "grid-template-rows 0.35s ease",
+          overflow: "hidden",
+          backgroundColor: open ? text : bg,
+          transition: "background-color 0.3s ease",
         }}
       >
-        <div style={{ overflow: "hidden" }}>
-          <p
-            className="text-white font-medium text-base mt-3"
+        <div className="flex items-center justify-between w-full">
+          <h2
+            className="font-bold text-lg"
             style={{
-              opacity: open ? 1 : 0,
-              transform: open ? "translateY(0)" : "translateY(8px)",
-              transition: "opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s",
+              color: open ? "#ffffff" : text,
+              transition: "color 0.3s ease",
             }}
           >
-            {answer}
-          </p>
+            {question}
+          </h2>
+          <ChevronDown
+            style={{
+              color: open ? "#ffffff" : text,
+              transform: open ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.3s ease, color 0.3s ease",
+              flexShrink: 0,
+            }}
+          />
+        </div>
+
+        {/* Animated answer */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateRows: open ? "1fr" : "0fr",
+            transition: "grid-template-rows 0.35s ease",
+          }}
+        >
+          <div style={{ overflow: "hidden" }}>
+            <p
+              className="text-white font-medium text-base mt-3"
+              style={{
+                opacity: open ? 1 : 0,
+                transform: open ? "translateY(0)" : "translateY(8px)",
+                transition:
+                  "opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s",
+              }}
+            >
+              {answer}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
   return (
-    <div className="flex flex-col items-center mt-5 w-full">
-      <h2
+    <motion.div
+      className="flex flex-col items-center mt-5 w-full"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={containerVariants}
+    >
+      <motion.h2
         className="font-bold text-[22px] text-center mb-2"
         style={{ color: text }}
+        variants={titleVariants}
       >
         {title}
-      </h2>
+      </motion.h2>
       {items.map((item, index) => (
         <AccordionItem
           text={text}
@@ -204,7 +238,7 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
           answer={item.answer}
         />
       ))}
-    </div>
+    </motion.div>
   );
 };
 

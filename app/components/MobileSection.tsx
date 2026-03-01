@@ -4,7 +4,7 @@ export default function MobileSection() {
   return (
     <div
       style={{ fontFamily: "Quicksand" }}
-      className="relative flex md:flex-row flex-col px-10 overflow-hidde pt-10 pb-32 md:gap-0 gap-10"
+      className="relative flex md:flex-row flex-col px-10 overflow-hidde pt-10 md:pb-28 pb-20 md:gap-0 gap-10"
     >
       <img
         src="/assets/mobile/icon1.svg"
