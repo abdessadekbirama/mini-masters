@@ -196,6 +196,7 @@ export default function Slider() {
   return (
     <>
       <div
+      id="tickets"
         ref={containerRef}
         style={{
           fontFamily: "Quicksand",

@@ -27,6 +27,7 @@ export default function Location() {
       </svg>
 
       <div
+        id="openingstijden"
         style={{ fontFamily: "Quicksand" }}
         className="relative w-full md:mt-8 xl:mt-0 xl:h-screen lg:[50vh] md:h-[70vh] h-fit 2xl:h-200"
       >

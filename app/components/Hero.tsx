@@ -47,7 +47,7 @@ export default function Hero() {
     <div className="-mt-21 relative" style={{ fontFamily: "Quicksand" }}>
       <AnimatedSilder />
       {/* <img src="/assets/hero.svg" alt="" /> */}
-      <div className="pt-28 relative flex flex-col items-center justify-center gap-5">
+      <div id="over-ons" className="pt-28 relative flex flex-col items-center justify-center gap-5">
         <img
           src="/assets/icons/gear.svg"
           className="absolute top-0 right-0 md:w-60 w-30"

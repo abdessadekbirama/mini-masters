@@ -21,7 +21,6 @@ const data: FaqCategory[] = [
     bg: "#FFFCF6",
     title: "Algemene vragen",
     items: [
-      
       {
         question: "Wat is Minimasters?",
         answer: (
@@ -155,8 +154,9 @@ const AccordionItem = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
-      className="w-full"
+      className="w-full relative"
     >
+
       <div
         onClick={() => setOpen((prev) => !prev)}
         className="w-full cursor-pointer p-4 px-6 rounded-xl mb-3"
@@ -244,8 +244,12 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
 
 export default function Faq() {
   return (
-    <div className="my-24" style={{ fontFamily: "Quicksand" }}>
-      <div className="flex w-fit md:px-10 px-5 py-4 md:pl-20 pl-10 md:translate-x-0 translate-x-5 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+    <div id="faq" className="my-24 relative" style={{ fontFamily: "Quicksand" }}>
+      <img src="/assets/faq/icon1.svg" className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2" alt="" />
+      <img src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
+      <img src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />
+
+      <div className="flex w-fit  md:px-10 px-5 py-4 md:pl-20 pl-10 md:translate-x-0 translate-x-5 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
         <img
           src="/assets/faq/icon.svg"
           className="absolute md:hidden"
@@ -258,6 +262,7 @@ export default function Faq() {
           style={{ width: "130px", left: -50 }}
           alt=""
         />
+
         <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
           VEELGESTELDE VRAGEN
         </h1>

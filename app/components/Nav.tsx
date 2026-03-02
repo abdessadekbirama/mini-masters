@@ -25,19 +25,19 @@ export default function Nav() {
         <Link href="/" className="text-[#FF5757]">
           HOME
         </Link>
-        <Link href="#over-ons" className="text-[#5763FF] text-nowrap">
+        <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
           OVER ONS
         </Link>
-        <Link href="#tickets" className="text-[#FF5757]">
+        <Link href="/#tickets" className="text-[#FF5757]">
           TICKETS
         </Link>
-        <Link href="#openingstijden" className="text-[#BB76FF]">
+        <Link href="/#openingstijden" className="text-[#BB76FF]">
           OPENINGSTIJDEN
         </Link>
-        <Link href="#faq" className="text-[#67CD8A]">
+        <Link href="/#faq" className="text-[#67CD8A]">
           FAQ
         </Link>
-        <Link href="#contact" className="text-[#5763FF]">
+        <Link href="/#contact" className="text-[#5763FF]">
           CONTACT
         </Link>
       </div>
@@ -105,35 +105,35 @@ export default function Nav() {
           HOME
         </Link>
         <Link
-          href="#over-ons"
+          href="/#over-ons"
           className="text-[#5763FF]"
           onClick={() => setIsOpen(false)}
         >
           OVER ONS
         </Link>
         <Link
-          href="#tickets"
+          href="/#tickets"
           className="text-[#FF5757]"
           onClick={() => setIsOpen(false)}
         >
           TICKETS
         </Link>
         <Link
-          href="#openingstijden"
+          href="/#openingstijden"
           className="text-[#BB76FF]"
           onClick={() => setIsOpen(false)}
         >
           OPENINGSTIJDEN
         </Link>
         <Link
-          href="#faq"
+          href="/#faq"
           className="text-[#67CD8A]"
           onClick={() => setIsOpen(false)}
         >
           FAQ
         </Link>
         <Link
-          href="#contact"
+          href="/#contact"
           className="text-[#5763FF]"
           onClick={() => setIsOpen(false)}
         >
